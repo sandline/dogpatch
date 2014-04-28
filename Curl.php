@@ -1,6 +1,8 @@
 <?php
     /*
     # Copyright 2014 NodeSocket, LLC.
+    # Forked and updated by sandline
+    # https://github.com/sandline/dogpatch
     #
     # Licensed under the Apache License, Version 2.0 (the "License");
     # you may not use this file except in compliance with the License.
@@ -16,9 +18,9 @@
     */
 
     class Curl {
-        private $curl_object;
+        protected $curl_object;
 
-        protected function __construct($username = null, $password = null, $timeout = 60, $ssl_verifypeer = true, $verbose = false) {
+        protected function __construct($username = null, $password = null, $timeout = 60, $ssl_verifypeer = true, $verbose = false, $cookiefile = null, $cookiejar = null) {
             $this->curl_object = curl_init();
 
             curl_setopt($this->curl_object, CURLOPT_CONNECTTIMEOUT, $timeout);
@@ -32,6 +34,14 @@
                 curl_setopt($this->curl_object, CURLOPT_SSL_VERIFYPEER, true);
             } else {
                 curl_setopt($this->curl_object, CURLOPT_SSL_VERIFYPEER, false);
+            }
+
+            if($cookiefile) {
+              curl_setopt($this->curl_object, CURLOPT_COOKIEFILE, $cookiefile);
+            }
+
+            if($cookiejar) {
+              curl_setopt($this->curl_object, CURLOPT_COOKIEJAR, $cookiejar);
             }
 
             curl_setopt($this->curl_object, CURLOPT_USERAGENT, "dogpatch");
@@ -55,6 +65,7 @@
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
             curl_setopt($this->curl_object, CURLOPT_POST, false);
             curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'GET');
+            curl_setopt($this->curl_object, CURLINFO_HEADER_OUT, true);
 
             if(!empty($headers)) {
                 curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
@@ -67,6 +78,7 @@
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
             curl_setopt($this->curl_object, CURLOPT_POST, true);
             curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'POST');
+            curl_setopt($this->curl_object, CURLINFO_HEADER_OUT, true);
 
             if(!empty($headers)) {
                 curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
@@ -81,6 +93,7 @@
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
             curl_setopt($this->curl_object, CURLOPT_POST, false);
             curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'PUT');
+            curl_setopt($this->curl_object, CURLINFO_HEADER_OUT, true);
 
             if(!empty($headers)) {
                 curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
@@ -93,6 +106,7 @@
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
             curl_setopt($this->curl_object, CURLOPT_POST, false);
             curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'DELETE');
+            curl_setopt($this->curl_object, CURLINFO_HEADER_OUT, true);
 
             if(!empty($headers)) {
                 curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
@@ -105,6 +119,7 @@
             curl_setopt($this->curl_object, CURLOPT_URL, $url);
             curl_setopt($this->curl_object, CURLOPT_POST, false);
             curl_setopt($this->curl_object, CURLOPT_CUSTOMREQUEST, 'HEAD');
+            curl_setopt($this->curl_object, CURLINFO_HEADER_OUT, true);
 
             if(!empty($headers)) {
                 curl_setopt($this->curl_object, CURLOPT_HTTPHEADER, $headers);
