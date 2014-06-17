@@ -291,6 +291,17 @@
             return $this;
         }
 
+        public function assert_valid_json() {
+            if(empty($this->body)) {
+                $this->body = substr($this->response, $this->get_curl_info(CURLINFO_HEADER_SIZE));
+            }
+
+            if(json_decode($this->body) === null) {
+                throw new Exception("Response body is invalid JSON.");
+            }
+            return $this;
+        }
+
         public function close() {
             parent::close();
             $this->unset_class_vars();
