@@ -251,46 +251,60 @@ $dogpatch->get("https://www.google.com")
          ->close();
 ````
 
-````php
-$dogpatch->echoBody();
-````
-
 Echo response body (for debug pourpose)
 ---------------------------------------
 
+Echo the received response body
+
 ````php
-$dogpatch->echoResponse();
+$dogpatch->echoBody();
 ````
 
 Echo full response (for debug pourpose)
 ---------------------------------------
 
+Echo the received full response (headers + body)
+
 ````php
-$dogpatch->echoHeaders();
+$dogpatch->echoResponse();
 ````
 
 Echo received headers (for debug pourpose)
 ------------------------------------------
 
+Echo the received response header
+
 ````php
-$dogpatch->echoHeaderOut();
+$dogpatch->echoHeaders();
 ````
 
 Echo sent headers (for debug pourpose)
 --------------------------------------
 
+Echo the sent headers
+
 ````php
-$dogpatch->echoStatus();
+$dogpatch->echoHeaderOut();
 ````
 
 Echo received status code (for debug pourpose)
 ----------------------------------------------
 
+Echo the received status code
+
+````php
+$dogpatch->echoStatus();
+````
+
+Save single received header
+---------------------------
+
+
+Save a single header in to a variable for later usage
+
 ````php
 $dogpatch->saveHeader($header, &$store);
 ````
-
-Save a single header in to a variable for later usage
 
 ##### Parameters
 
@@ -301,11 +315,11 @@ Save a single header in to a variable for later usage
 Save received status code
 -------------------------
 
+Save the received status code for later usage
+
 ````php
 $dogpatch->saveStatusCode(&$store);
 ````
-
-Save the received status code for later usage
 
 ##### Parameters
 
@@ -314,11 +328,11 @@ Save the received status code for later usage
 Save response body
 ------------------
 
+Save the response body for later usage
+
 ````php
 $dogpatch->saveBody(&$store);
 ````
-
-Save the response body for later usage
 
 ##### Parameters
 
@@ -327,11 +341,11 @@ Save the response body for later usage
 Add field(s) to GET
 -------------------
 
+Add to next request an array of GET params
+
 ````php
 $dogpatch->addGetFields($getArray);
 ````
-
-Add to next request an array of GET params
 
 ##### Parameters
 
@@ -340,11 +354,15 @@ Add to next request an array of GET params
 Replace GET fields
 ------------------
 
+Replace GET params for next GET request
+
 ````php
 $dogpatch->setGetFields($getArray);
 ````
 
-Replace GET params for next GET request
+##### Parameters
+
+>**getArray:** The PHP array of parameters that should be used for next GET request
 
 This example will execute a GET on https://github.com/?action=execute&code=12345
 
@@ -359,18 +377,14 @@ $dogpatch->setGetFields($par)
          ->close();
 ````
 
-##### Parameters
-
->**getArray:** The PHP array of parameters that should be used for next GET request
-
 Add field(s) to POST
 --------------------
+
+Add to next request an array of POST params
 
 ````php
 $dogpatch->addPostFields($getArray);
 ````
-
-Add to next request an array of POST params
 
 ##### Parameters
 
@@ -379,11 +393,15 @@ Add to next request an array of POST params
 Replace POST fields
 -------------------
 
+Replace POST params for next POST request
+
 ````php
 $dogpatch->setPostFields($getArray);
 ````
 
-Replace POST params for next POST request
+##### Parameters
+
+>**getArray:** The PHP array of parameters that should be used for next POST request
 
 This example will execute a POST on https://github.com using the following POST params: action=execute&code=12345
 
@@ -397,11 +415,6 @@ $dogpatch->setPostFields($par)
          ->post("https://github.com")
          ->close();
 ````
-
-##### Parameters
-
->**getArray:** The PHP array of parameters that should be used for next POST request
-
 
 Current Version
 ---------------
