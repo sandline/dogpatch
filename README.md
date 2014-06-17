@@ -5,6 +5,9 @@ dogpatch+
 
 #### An HTTP API testing framework, written in PHP using curl. Supports ssl, basic auth, passing custom request headers, redirection *(10 levels)*, and most HTTP request methods. Orginally written for testing the [Commando.io](https://commando.io) API.
 
+##### Actually, it's pretty much good also for scraping pourpose.
+
+
 ##### Canonical Examples
 
 ````php
