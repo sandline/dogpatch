@@ -208,7 +208,7 @@ $dogpatch->assert_body_json_file($asserted_json_file, $on_not_equal_print_json =
 >**on_not_equal_print_json:** An optional true/false flag which you may reference with globals `PRINT_JSON` and `DONT_PRINT_JSON`. If a mismatch is detected between the JSON file and the response body, print both making it convenient to find discrepancies. Defaults to false.
 
 Assert Body is valid JSON
------------------------------
+-------------------------
 
 ````php
 $dogpatch->assert_valid_json();
@@ -256,30 +256,35 @@ $dogpatch->echoBody();
 ````
 
 Echo response body (for debug pourpose)
+---------------------------------------
 
 ````php
 $dogpatch->echoResponse();
 ````
 
 Echo full response (for debug pourpose)
+---------------------------------------
 
 ````php
 $dogpatch->echoHeaders();
 ````
 
 Echo received headers (for debug pourpose)
+------------------------------------------
 
 ````php
 $dogpatch->echoHeaderOut();
 ````
 
 Echo sent headers (for debug pourpose)
+--------------------------------------
 
 ````php
 $dogpatch->echoStatus();
 ````
 
 Echo received status code (for debug pourpose)
+----------------------------------------------
 
 ````php
 $dogpatch->saveHeader($header, &$store);
@@ -293,6 +298,9 @@ Save a single header in to a variable for later usage
 
 >**store:** The variable where the header content should be saved
 
+Save received status code
+-------------------------
+
 ````php
 $dogpatch->saveStatusCode(&$store);
 ````
@@ -302,6 +310,9 @@ Save the received status code for later usage
 ##### Parameters
 
 >**store:** The variable where the status code should be saved
+
+Save response body
+------------------
 
 ````php
 $dogpatch->saveBody(&$store);
@@ -313,6 +324,9 @@ Save the response body for later usage
 
 >**store:** The variable where the responde body should be saved
 
+Add field(s) to GET
+-------------------
+
 ````php
 $dogpatch->addGetFields($getArray);
 ````
@@ -322,6 +336,9 @@ Add to next request an array of GET params
 ##### Parameters
 
 >**getArray:** The PHP array of parameters that should be added to next GET request
+
+Replace GET fields
+------------------
 
 ````php
 $dogpatch->setGetFields($getArray);
@@ -346,6 +363,9 @@ $dogpatch->setGetFields($par)
 
 >**getArray:** The PHP array of parameters that should be used for next GET request
 
+Add field(s) to POST
+--------------------
+
 ````php
 $dogpatch->addPostFields($getArray);
 ````
@@ -355,6 +375,9 @@ Add to next request an array of POST params
 ##### Parameters
 
 >**getArray:** The PHP array of parameters that should be added to next POST request
+
+Replace POST fields
+-------------------
 
 ````php
 $dogpatch->setPostFields($getArray);
@@ -374,7 +397,6 @@ $dogpatch->setPostFields($par)
          ->post("https://github.com")
          ->close();
 ````
-
 
 ##### Parameters
 
