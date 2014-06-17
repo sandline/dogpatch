@@ -1,6 +1,4 @@
-(notice: will be updated soon)
-
-dogpatch
+dogpatch+
 ========
 
 ![dogpatch](https://raw.github.com/commando/dogpatch/master/assets/images/dogpatch.jpg)
@@ -209,6 +207,13 @@ $dogpatch->assert_body_json_file($asserted_json_file, $on_not_equal_print_json =
 
 >**on_not_equal_print_json:** An optional true/false flag which you may reference with globals `PRINT_JSON` and `DONT_PRINT_JSON`. If a mismatch is detected between the JSON file and the response body, print both making it convenient to find discrepancies. Defaults to false.
 
+Assert Body is valid JSON
+-----------------------------
+
+````php
+$dogpatch->assert_valid_json();
+```
+
 Close
 -----
 
@@ -245,6 +250,136 @@ $dogpatch->get("https://www.google.com")
          ->get("https://github.com")
          ->close();
 ````
+
+````php
+$dogpatch->echoBody();
+````
+
+Echo response body (for debug pourpose)
+
+````php
+$dogpatch->echoResponse();
+````
+
+Echo full response (for debug pourpose)
+
+````php
+$dogpatch->echoHeaders();
+````
+
+Echo received headers (for debug pourpose)
+
+````php
+$dogpatch->echoHeaderOut();
+````
+
+Echo sent headers (for debug pourpose)
+
+````php
+$dogpatch->echoStatus();
+````
+
+Echo received status code (for debug pourpose)
+
+````php
+$dogpatch->saveHeader($header, &$store);
+````
+
+Save a single header in to a variable for later usage
+
+##### Parameters
+
+>**header:** The header to be saved, for example `Content-Length`.
+
+>**store:** The variable where the header content should be saved
+
+````php
+$dogpatch->saveStatusCode(&$store);
+````
+
+Save the received status code for later usage
+
+##### Parameters
+
+>**store:** The variable where the status code should be saved
+
+````php
+$dogpatch->saveBody(&$store);
+````
+
+Save the response body for later usage
+
+##### Parameters
+
+>**store:** The variable where the responde body should be saved
+
+````php
+$dogpatch->addGetFields($getArray);
+````
+
+Add to next request an array of GET params
+
+##### Parameters
+
+>**getArray:** The PHP array of parameters that should be added to next GET request
+
+````php
+$dogpatch->setGetFields($getArray);
+````
+
+Replace GET params for next GET request
+
+This example will execute a GET on https://github.com/?action=execute&code=12345
+
+````php
+$dogpatch = new Dogpatch();
+$par=array(
+  'action' => 'execute',
+  'code'   => '12345',
+);
+$dogpatch->setGetFields($par)
+         ->get("https://github.com")
+         ->close();
+````
+
+##### Parameters
+
+>**getArray:** The PHP array of parameters that should be used for next GET request
+
+````php
+$dogpatch->addPostFields($getArray);
+````
+
+Add to next request an array of POST params
+
+##### Parameters
+
+>**getArray:** The PHP array of parameters that should be added to next POST request
+
+````php
+$dogpatch->setPostFields($getArray);
+````
+
+Replace POST params for next POST request
+
+This example will execute a POST on https://github.com using the following POST params: action=execute&code=12345
+
+````php
+$dogpatch = new Dogpatch();
+$par=array(
+  'action' => 'execute',
+  'code'   => '12345',
+);
+$dogpatch->setPostFields($par)
+         ->post("https://github.com")
+         ->close();
+````
+
+
+##### Parameters
+
+>**getArray:** The PHP array of parameters that should be used for next POST request
+
 
 Current Version
 ---------------
