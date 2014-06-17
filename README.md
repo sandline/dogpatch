@@ -68,6 +68,10 @@ $dogpatch = new Dogpatch(array $curl_options = array());
 
 >**verbose:** Turns on verbose curl logging, and log all requests into a file `logs/curl_debug.log`. Defaults to `false`.
 
+>**cookiefile:** The file used to read request cookies (set `CURLOPT_COOKIEFILE` curl option).
+
+>**cookiejar:** The file that should be used to save response cookies (set `CURLOPT_COOKIEJAR` curl option).
+
 Get
 ---
 
